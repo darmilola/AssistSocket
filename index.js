@@ -11,7 +11,7 @@ class Server{
 
     constructor(){
         this.port =  process.env.PORT;
-        this.host = 'https://glacial-springs-30545.herokuapp.com';
+        this.host = 'localhost';
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);
@@ -21,7 +21,7 @@ class Server{
    appExecute(){
      
         this.http.listen(this.port, this.host, () => {
-            console.log(`Listening on http://${this.host}:${this.port}`);
+           // console.log(`Listening on http://${this.host}:${this.port}`);
         });
 
         this.app.get('/', (req, res) => {

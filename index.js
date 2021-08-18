@@ -10,7 +10,7 @@ const socketio = require('socket.io');
 class Server{
 
     constructor(){
-        this.host = 'glacial-springs-30545.herokuapp.com';
+        this.host = '0.0.0.0';
         this.protocol = "https";
         this.port = process.env.PORT || 3000;
         this.app = express();

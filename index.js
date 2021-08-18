@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 class Server{
 
     constructor(){
-        this.port =  process.env.PORT || 3000;
+        this.port =  process.env.PORT || 8080;
         this.host = 'https://glacial-springs-30545.herokuapp.com';
         this.app = express();
         this.http = http.Server(this.app);

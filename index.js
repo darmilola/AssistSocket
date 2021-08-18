@@ -11,7 +11,7 @@ class Server{
 
     constructor(){
         this.port =  process.env.PORT || 3000;
-        this.host = `localhost`;
+        this.host = 'https://glacial-springs-30545.herokuapp.com';
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);

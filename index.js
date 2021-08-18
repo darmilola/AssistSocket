@@ -3,7 +3,7 @@
 const express = require("express");
 const http = require('http');
 const socketio = require('socket.io');
-const bodyParser = require('body-parser');
+
 
 
 
@@ -17,14 +17,6 @@ class Server{
         this.socket = socketio(this.http);
         this.users = {};
     }
-
-    appConfig(){        
-        this.app.use(
-            bodyParser.json()
-        );
-    }
-
-   
 
     appExecute(){
 

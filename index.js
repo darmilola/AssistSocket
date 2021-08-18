@@ -10,8 +10,8 @@ const socketio = require('socket.io');
 class Server{
 
     constructor(){
-        this.port =  process.env.PORT;
-        this.host = 'localhost';
+        const host = '0.0.0.0';
+        const port = process.env.PORT || 3000;
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);

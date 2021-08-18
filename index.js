@@ -10,7 +10,7 @@ const socketio = require('socket.io');
 class Server{
 
     constructor(){
-        this.port =  process.env.PORT || 8080;
+        this.port =  process.env.PORT;
         this.host = 'https://glacial-springs-30545.herokuapp.com';
         this.app = express();
         this.http = http.Server(this.app);
@@ -18,8 +18,8 @@ class Server{
         this.users = {};
     }
 
-    appExecute(){
-
+   appExecute(){
+     
         this.http.listen(this.port, this.host, () => {
             console.log(`Listening on http://${this.host}:${this.port}`);
         });

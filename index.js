@@ -3,6 +3,7 @@
 const express = require("express");
 const http = require('http');
 const socketio = require('socket.io');
+const users = new Map();
 
 
 
@@ -10,14 +11,13 @@ const socketio = require('socket.io');
 class Server{
 
     constructor(){
-        this.host = '0.0.0.0';
+        this.host = "localhost";//'0.0.0.0';
         this.protocol = "https";
-        this.port = process.env.PORT || 3000;
+        this.port = 3000;//process.env.PORT || 3000;
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);
-        this.users = {};
-    }
+        }
 
    appExecute(){
      
@@ -30,36 +30,40 @@ class Server{
          res.send('Chat Server is running on port 3000')
         });    
 
-        this.http.on('connection', (socket) => {
+        this.socket.on('connection', (socket) => {
 
         console.log('user connected')
 
+            
+        socket.on('join', function(userId) {
 
+        users.set(userId, socket.id);
 
-        socket.on('joinChat', function(userId) {
+        //socket.broadcast.emit('userjoinedChat',userNickname +" : has joined the chat ")
+        console.log('joined chat')
 
-        this.users[userId] =  socket.id;
-        socket.broadcast.emit('userjoinedChat',userNickname +" : has joined the chat ")
  
         });
 
         
-        socket.on('messageDetection', (receiverId,messageContent,messageType) => {
+        socket.on('messagedetection', (receiverId,messageContent,messageType) => {
 
         //create a message object 
 
         let  message = {"message":messageContent, "receiverId":receiverId,"messageType":messageType}
 
-        io.to(this.users[receiverId]).emit("message", message)
+        console.log(message)
+        console.log(users.get(receiverId))
+        console.log(receiverId)
+
+        socket.to(users.get(receiverId)).emit("message", message)
 
         })
 
+        });
+}
 
 
-});    
-
-
-        }
 }
 
 const app = new Server();

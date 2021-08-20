@@ -11,9 +11,9 @@ const users = new Map();
 class Server{
 
     constructor(){
-        this.host = "localhost";//'0.0.0.0';
+        this.host = '0.0.0.0';
         this.protocol = "https";
-        this.port = 3000;//process.env.PORT || 3000;
+        this.port = process.env.PORT || 3000;
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);

@@ -102,7 +102,7 @@ class Server{
 
         let  message = {"message":messageContent, "receiverId":receiverId,"senderName":senderName,"senderImageUrl":senderImageUrl}
 
-       socket.to(users.get(receiverId)).emit("message", message)
+       socket.to(users.get(receiverId)).emit("notification", message)
 
         })
 

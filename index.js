@@ -57,6 +57,12 @@ class Server{
 
          }); 
 
+        socket.on('stoptyping', function(receiverId) {
+      
+             socket.to(users.get(receiverId)).emit("onStopTyping", "stoptyping")
+
+         }); 
+
         socket.on('online', function(receiverId) {
       
              socket.to(users.get(receiverId)).emit("onOnline", "online")

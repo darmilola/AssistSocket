@@ -44,7 +44,7 @@ class Server{
        });
 
 
-        socket.on('disconnect', function(receiverId) {
+        socket.on('disconnected', function(receiverId) {
       
              socket.to(users.get(receiverId)).emit("onOffline", "offline")
              users.delete(receiverId);

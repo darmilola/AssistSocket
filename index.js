@@ -44,12 +44,12 @@ class Server{
        });
 
 
-        socket.on('disconnected', function(receiverId) {
-      
+         socket.on('disconnected', function(senderId,receiverId) {
+         
              socket.to(users.get(receiverId)).emit("onOffline", "offline")
-             users.delete(receiverId);
-
-         }); 
+             users.delete(senderId);
+         
+         });
 
         socket.on('typing', function(receiverId) {
       
@@ -68,15 +68,6 @@ class Server{
              socket.to(users.get(receiverId)).emit("onOnline", "online")
 
          });
-
-
-         socket.on('match', function(receiverId,matchFirstname,matchImageUrl) {
-      
-             let  message = {"receiverId":receiverId,"matchFirstname":matchFirstname,"matchImageUrl":matchImageUrl}
-             socket.to(users.get(receiverId)).emit("onMatch", "matched")
-
-         }); 
-
 
         
         socket.on('messagedetection', (receiverId,messageContent,messageType) => {
@@ -102,7 +93,7 @@ class Server{
 
         let  message = {"message":messageContent, "receiverId":receiverId,"senderName":senderName,"senderImageUrl":senderImageUrl}
 
-       socket.to(users.get(receiverId)).emit("notification", message)
+        socket.to(users.get(receiverId)).emit("notification", message)
 
         })
 

@@ -82,12 +82,10 @@ class Server{
 
         socket.to(users.get(receiverId)).emit("message", message)
 
-        })
+        });
+        
 
         });
-
-     });
-
 }
 
 }

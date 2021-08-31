@@ -41,9 +41,36 @@ class Server{
 
         //socket.broadcast.emit('userjoinedChat',userNickname +" : has joined the chat ")
         console.log('joined chat')
+       });
 
- 
-        });
+
+        socket.on('disconnect', function(receiverId) {
+      
+             socket.to(users.get(receiverId)).emit("onOffline", "offline")
+             users.delete(receiverId);
+
+         }); 
+
+        socket.on('typing', function(receiverId) {
+      
+             socket.to(users.get(receiverId)).emit("onTyping", "typing")
+
+         }); 
+
+        socket.on('online', function(receiverId) {
+      
+             socket.to(users.get(receiverId)).emit("onOnline", "online")
+
+         });
+
+
+         socket.on('match', function(receiverId,matchFirstname) {
+      
+             let  message = {"receiverId":receiverId,"matchFirstname":matchFirstname}
+             socket.to(users.get(receiverId)).emit("onMatch", "matched")
+
+         }); 
+
 
         
         socket.on('messagedetection', (receiverId,messageContent,messageType) => {
@@ -62,7 +89,6 @@ class Server{
 
         });
 }
-
 
 }
 

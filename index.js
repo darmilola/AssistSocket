@@ -86,19 +86,8 @@ class Server{
 
         });
 
-      
-       socket.on('notificationdetection', (receiverId,messageContent,senderName,senderImageUrl) => {
+     });
 
-        //create a message object 
-
-        let  message = {"message":messageContent, "receiverId":receiverId,"senderName":senderName,"senderImageUrl":senderImageUrl}
-
-        socket.to(users.get(receiverId)).emit("notification", message)
-
-        })
-
-
-        });
 }
 
 }

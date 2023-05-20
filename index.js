@@ -27,9 +27,9 @@ class Server{
         this.app.get('/', (req, res) => {
 
          res.send('Chat Server is running on port 3000')
-        });    
-
-        this.socket.on('connection', (socket) => {
+            
+            
+              this.socket.on('connection', (socket) => {
 
         console.log('user connected')
 
@@ -86,6 +86,13 @@ class Server{
         
 
         });
+            
+            
+            
+            
+        });    
+
+      
 }
 
 }

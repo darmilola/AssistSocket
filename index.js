@@ -18,6 +18,7 @@ class Server{
         this.socket = socketio(this.http);
         }
 
+ 
    appExecute(){
      
         this.http.listen(this.port, this.host, () => {
@@ -33,45 +34,45 @@ class Server{
 
         console.log('user connected')
 
-    });
+         });
 
             
-        this.socket.on('join', function(userId) {
+        socket.on('join', function(userId) {
 
-        users.set(userId, this.socket.id);
+        users.set(userId, socket.id);
 
         //socket.broadcast.emit('userjoinedChat',userNickname +" : has joined the chat ")
         console.log('joined chat')
        });
 
 
-         this.socket.on('disconnected', function(senderId,receiverId) {
+         socket.on('disconnected', function(senderId,receiverId) {
          
-            this.socket.to(users.get(receiverId)).emit("onOffline", "offline")
+             socket.to(users.get(receiverId)).emit("onOffline", "offline")
              users.delete(senderId);
          
          });
 
-        this.socket.on('typing', function(receiverId) {
+        socket.on('typing', function(receiverId) {
       
-            this.socket.to(users.get(receiverId)).emit("onTyping", "typing")
+             socket.to(users.get(receiverId)).emit("onTyping", "typing")
 
          }); 
 
-        this.socket.on('stoptyping', function(receiverId) {
+        socket.on('stoptyping', function(receiverId) {
       
-            this.socket.to(users.get(receiverId)).emit("onStopTyping", "stoptyping")
+             socket.to(users.get(receiverId)).emit("onStopTyping", "stoptyping")
 
          }); 
 
         socket.on('online', function(receiverId) {
       
-            this.socket.to(users.get(receiverId)).emit("onOnline", "online")
+             socket.to(users.get(receiverId)).emit("onOnline", "online")
 
          });
 
         
-         this.socket.on('messagedetection', (receiverId,messageContent,messageType) => {
+        socket.on('messagedetection', (receiverId,messageContent,messageType) => {
 
         //create a message object 
 
@@ -81,7 +82,7 @@ class Server{
         console.log(users.get(receiverId))
         console.log(receiverId)
 
-        this.socket.to(users.get(receiverId)).emit("message", message)
+        socket.to(users.get(receiverId)).emit("message", message)
 
         });
 }

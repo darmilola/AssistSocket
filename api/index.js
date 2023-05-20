@@ -25,13 +25,11 @@ class Server{
             console.log(`Listening on http:${this.host}:${this.port}`);
         });
 
-        this.app.get('/', (req, res) => {
+        this.app.get('/api', (req, res) => {
 
          res.send('Chat Server is running on port 3000')
         });   
-       
-       app.get('/ping', (req, res) => {
-        res.send('pong 🏓')
+      
     })
 
         this.socket.on('connection', (socket) => {

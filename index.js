@@ -90,6 +90,3 @@ class Server{
 }
 
 }
-
-// Export the Express API
-module.exports = app

@@ -27,7 +27,7 @@ class Server{
     constructor(){
         this.host = '0.0.0.0';
         this.protocol = "https";
-        this.port = process.env.PORT || 3000;
+        this.port = 4000;
         this.app = express();
         this.http = http.Server(this.app);
         this.socket = socketio(this.http);
@@ -102,6 +102,9 @@ class Server{
 
         });
 }
+  
+  // Export the Express API
+module.exports = this.app
 
 }
 

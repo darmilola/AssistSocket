@@ -102,9 +102,6 @@ class Server{
 
         });
 }
-  
-  // Export the Express API
-module.exports = this.app
 
 }
 

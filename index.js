@@ -34,7 +34,6 @@ class Server{
 
         console.log('user connected')
 
-         });
 
             
         socket.on('join', function(userId) {
@@ -85,6 +84,8 @@ class Server{
         socket.to(users.get(receiverId)).emit("message", message)
 
         });
+            
+              });
 }
 
 }

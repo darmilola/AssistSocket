@@ -7,7 +7,7 @@ const { emit } = require("process");
 const socketio = require('socket.io');
 const users = new Map();
 
-const app = express()
+/*const app = express()
 const PORT = 4000
 
 app.listen(PORT, () => {
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.send('This is my about route..... ')
-})
+})*/
 
 class Server{
 
@@ -102,10 +102,15 @@ class Server{
 
         });
 }
+  
+// Export the Express API
+module.exports = this.app
 
 }
 
-// Export the Express API
-module.exports = app
+const app = new Server();
+app.appExecute();
+
+
 
 
